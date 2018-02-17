@@ -1,6 +1,7 @@
 package com.testuj.selenium.pages;
 
 import com.testuj.selenium.configuration.Driver;
+import com.testuj.selenium.configuration.Waits;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -27,6 +28,7 @@ public class ContactUsPage {
     private WebElement txtSuccess;
 
     public ContactUsPage() {
+        Waits.implicitlyWait(2);
         PageFactory.initElements(Driver.getInstance(), this);
     }
 
@@ -57,6 +59,7 @@ public class ContactUsPage {
     }
 
     public String getSuccessAlertText() {
+        Waits.waitForElementToBeVisible(txtSuccess);
         return txtSuccess.getText();
     }
 }
