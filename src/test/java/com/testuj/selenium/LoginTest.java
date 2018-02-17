@@ -16,14 +16,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
 
     private HomePage homePage;
-
-    @Before
-    public void setUp() {
-        Driver.getInstance();
-    }
 
     @Test
     public void asNotRegisteredCustomerIShouldntLogin() {
@@ -41,31 +36,6 @@ public class LoginTest {
 
         //then
         assertEquals(true, logInPage.txtError.isDisplayed());
-    }
-
-    @Test
-    public void asCustomerIShallSendContactMessage() {
-
-        //given
-        homePage = new HomePage();
-        homePage.btnContactUs.click();
-        ContactUsPage contactUsPage = new ContactUsPage();
-        Select selectSubject = new Select(contactUsPage.ddSubject);
-        selectSubject.selectByIndex(1);
-        contactUsPage.tfEmail.sendKeys("test@email.com");
-        contactUsPage.tfOrderRef.sendKeys("Order reference");
-        contactUsPage.tfMessage.sendKeys("Message");
-
-        //when
-        contactUsPage.btnSend.click();
-
-        //then
-        assertEquals("Your message has been successfully sent to our team.", contactUsPage.txtSuccess.getText());
-    }
-
-    @After
-    public void cleanUp() {
-        Driver.closeDriver();
     }
 
 }
