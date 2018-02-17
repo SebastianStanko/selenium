@@ -1,5 +1,9 @@
 package com.testuj.selenium;
 
+import com.testuj.selenium.configuration.Driver;
+import com.testuj.selenium.pages.ContactUsPage;
+import com.testuj.selenium.pages.HomePage;
+import com.testuj.selenium.pages.LogInPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,69 +18,54 @@ import static org.junit.Assert.assertEquals;
 
 public class LoginTest {
 
-    private WebDriver webDriver;
+    private HomePage homePage;
 
     @Before
     public void setUp() {
-        webDriver = Driver.setUpDriver();
+        Driver.getInstance();
     }
 
     @Test
     public void asNotRegisteredCustomerIShouldntLogin() {
         //given
+        homePage = new HomePage();
         String email = "test@email.com";
         String password = "Password123";
-        By firstBtnSignInSelector = By.className("login");
-        String tfEmailSelector = "email";
-        String tfPasswordSelector = "passwd";
-        String secondBtnSignInSelector = "SubmitLogin";
-        String txtErrorSelector = "ol > li";
-        WebElement btnSignIn = webDriver.findElement(firstBtnSignInSelector);
-        btnSignIn.click();
-        WebElement tfEmail = webDriver.findElement(By.id(tfEmailSelector));
-        WebElement tfPassword = webDriver.findElement(By.id(tfPasswordSelector));
-        WebElement btnSignIn2 = webDriver.findElement(By.id(secondBtnSignInSelector));
-        tfEmail.sendKeys(email);
-        tfPassword.sendKeys(password);
+        homePage.btnSignIn.click();
+        LogInPage logInPage = new LogInPage();
+        logInPage.tfEmail.sendKeys(email);
+        logInPage.tfPassword.sendKeys(password);
 
         //when
-        btnSignIn2.click();
-        WebElement txtError = webDriver.findElement(By.cssSelector(txtErrorSelector));
+        logInPage.btnSignIn.click();
 
         //then
-        assertEquals(true, txtError.isDisplayed());
+        assertEquals(true, logInPage.txtError.isDisplayed());
     }
 
     @Test
     public void asCustomerIShallSendContactMessage() {
 
         //given
-        WebElement btnContactUs = webDriver.findElement(By.cssSelector("#contact-link > a"));
-        btnContactUs.click();
-        List<WebElement> option = webDriver.findElements(By.cssSelector("option"));
-        WebElement ddSelect = webDriver.findElement(By.id("id_contact"));
-        Select selectSubject = new Select(ddSelect);
-        WebElement tfEmail = webDriver.findElement(By.id("email"));
-        WebElement tfOrderRef = webDriver.findElement(By.id("id_order"));
-        WebElement tfMessage = webDriver.findElement(By.id("message"));
-        WebElement btnSend = webDriver.findElement(By.id("submitMessage"));
-
+        homePage = new HomePage();
+        homePage.btnContactUs.click();
+        ContactUsPage contactUsPage = new ContactUsPage();
+        Select selectSubject = new Select(contactUsPage.ddSubject);
         selectSubject.selectByIndex(1);
-        tfEmail.sendKeys("test@email.com");
-        tfOrderRef.sendKeys("Order reference");
-        tfMessage.sendKeys("Message");
+        contactUsPage.tfEmail.sendKeys("test@email.com");
+        contactUsPage.tfOrderRef.sendKeys("Order reference");
+        contactUsPage.tfMessage.sendKeys("Message");
 
         //when
-        btnSend.click();
-        WebElement txtSuccess = webDriver.findElement(By.cssSelector(".alert.alert-success"));
+        contactUsPage.btnSend.click();
 
         //then
-        assertEquals("Your message has been successfully sent to our team.", txtSuccess.getText());
+        assertEquals("Your message has been successfully sent to our team.", contactUsPage.txtSuccess.getText());
     }
 
     @After
     public void cleanUp() {
-        webDriver.close();
+        Driver.closeDriver();
     }
 
 }
