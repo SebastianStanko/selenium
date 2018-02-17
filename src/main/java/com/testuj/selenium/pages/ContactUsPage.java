@@ -4,28 +4,54 @@ import com.testuj.selenium.configuration.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class ContactUsPage {
 
     @FindBy(id = "id_contact")
-    public WebElement ddSubject;
+    private WebElement ddSubject;
 
     @FindBy(id = "email")
-    public WebElement tfEmail;
+    private WebElement tfEmail;
 
     @FindBy(id = "id_order")
-    public WebElement tfOrderRef;
+    private WebElement tfOrderRef;
 
     @FindBy(id = "message")
-    public WebElement tfMessage;
+    private WebElement tfMessage;
 
     @FindBy(id = "submitMessage")
-    public WebElement btnSend;
+    private WebElement btnSend;
 
     @FindBy(css = ".alert.alert-success")
-    public WebElement txtSuccess;
+    private WebElement txtSuccess;
 
     public ContactUsPage() {
         PageFactory.initElements(Driver.getInstance(), this);
+    }
+
+    public void selectSubjectElementByIndex(int index) {
+        Select selectSubject = new Select(ddSubject);
+        selectSubject.selectByIndex(1);
+    }
+
+    public void typeIntoEmailTf(String email) {
+        tfEmail.sendKeys(email);
+    }
+
+    public void typeIntoOrderRefTf(String password) {
+        tfOrderRef.sendKeys(password);
+    }
+
+    public void typeIntoMessageTf(String password) {
+        tfMessage.sendKeys(password);
+    }
+
+    public void clickOnSendBtn() {
+        btnSend.click();
+    }
+
+    public String getSuccessAlertText() {
+        return txtSuccess.getText();
     }
 }

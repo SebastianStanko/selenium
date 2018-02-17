@@ -8,18 +8,34 @@ import org.openqa.selenium.support.PageFactory;
 public class LogInPage {
 
     @FindBy(id = "email")
-    public WebElement tfEmail;
+    private WebElement tfEmail;
 
     @FindBy(id = "passwd")
-    public WebElement tfPassword;
+    private WebElement tfPassword;
 
     @FindBy(id = "SubmitLogin")
-    public WebElement btnSignIn;
+    private WebElement btnSignIn;
 
     @FindBy(css = "ol > li")
-    public WebElement txtError;
+    private WebElement txtError;
 
     public LogInPage() {
         PageFactory.initElements(Driver.getInstance(), this);
+    }
+
+    public void typeIntoEmailTf(String email) {
+        tfEmail.sendKeys(email);
+    }
+
+    public void typeIntoPasswordTf(String password) {
+        tfPassword.sendKeys(password);
+    }
+
+    public void clickOnSignInBtn() {
+        btnSignIn.click();
+    }
+
+    public boolean isErrorTextDisplayed() {
+        return txtError.isDisplayed();
     }
 }

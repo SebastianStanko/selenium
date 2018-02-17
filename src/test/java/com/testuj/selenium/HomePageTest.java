@@ -16,7 +16,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage();
 
         //when
-        boolean actualResult = homePage.imgLogo.isDisplayed();
+        boolean actualResult = homePage.isLogoImageDisplayed();
 
         //then
         assertEquals(true, actualResult);

@@ -8,16 +8,28 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage {
 
     @FindBy(css = "img[class='logo img-responsive']")
-    public WebElement imgLogo;
+    private WebElement imgLogo;
 
     @FindBy(className = "login")
-    public WebElement btnSignIn;
+    private WebElement btnSignIn;
 
     @FindBy(css = "#contact-link > a")
-    public WebElement btnContactUs;
+    private WebElement btnContactUs;
 
     public HomePage() {
         PageFactory.initElements(Driver.getInstance(), this);
+    }
+
+    public boolean isLogoImageDisplayed() {
+        return imgLogo.isDisplayed();
+    }
+
+    public void clickOnSignInBtn() {
+        btnSignIn.click();
+    }
+
+    public void clickOnContactUsBtn() {
+        btnContactUs.click();
     }
 
 }
