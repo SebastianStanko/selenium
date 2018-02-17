@@ -15,15 +15,14 @@ public class ContactUsPageTest extends BaseTest {
 
         //given
         homePage = new HomePage();
-        homePage.clickOnContactUsBtn();
-        ContactUsPage contactUsPage = new ContactUsPage();
-        contactUsPage.selectSubjectElementByIndex(1);
-        contactUsPage.typeIntoEmailTf("test@email.com");
-        contactUsPage.typeIntoOrderRefTf("Order reference");
-        contactUsPage.typeIntoMessageTf("Message");
+        ContactUsPage contactUsPage = homePage.clickOnContactUsBtn()
+                .selectSubjectElementByIndex(1)
+                .typeIntoEmailTf("test@email.com")
+                .typeIntoOrderRefTf("Order reference")
+                .typeIntoMessageTf("Message")
 
-        //when
-        contactUsPage.clickOnSendBtn();
+                //when
+                .clickOnSendBtn();
 
         //then
         assertEquals("Your message has been successfully sent to our team.", contactUsPage.getSuccessAlertText());

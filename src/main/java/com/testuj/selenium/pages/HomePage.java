@@ -24,12 +24,14 @@ public class HomePage {
         return imgLogo.isDisplayed();
     }
 
-    public void clickOnSignInBtn() {
+    public LogInPage clickOnSignInBtn() {
         btnSignIn.click();
+        return new LogInPage();
     }
 
-    public void clickOnContactUsBtn() {
+    public ContactUsPage clickOnContactUsBtn() {
         btnContactUs.click();
+        return new ContactUsPage();
     }
 
 }

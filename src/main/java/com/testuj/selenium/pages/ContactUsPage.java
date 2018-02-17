@@ -30,25 +30,30 @@ public class ContactUsPage {
         PageFactory.initElements(Driver.getInstance(), this);
     }
 
-    public void selectSubjectElementByIndex(int index) {
+    public ContactUsPage selectSubjectElementByIndex(int index) {
         Select selectSubject = new Select(ddSubject);
         selectSubject.selectByIndex(1);
+        return this;
     }
 
-    public void typeIntoEmailTf(String email) {
+    public ContactUsPage typeIntoEmailTf(String email) {
         tfEmail.sendKeys(email);
+        return this;
     }
 
-    public void typeIntoOrderRefTf(String password) {
+    public ContactUsPage typeIntoOrderRefTf(String password) {
         tfOrderRef.sendKeys(password);
+        return this;
     }
 
-    public void typeIntoMessageTf(String password) {
+    public ContactUsPage typeIntoMessageTf(String password) {
         tfMessage.sendKeys(password);
+        return this;
     }
 
-    public void clickOnSendBtn() {
+    public ContactUsPage clickOnSendBtn() {
         btnSend.click();
+        return this;
     }
 
     public String getSuccessAlertText() {

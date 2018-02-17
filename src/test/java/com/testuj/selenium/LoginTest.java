@@ -16,13 +16,13 @@ public class LoginTest extends BaseTest {
         homePage = new HomePage();
         String email = "test@email.com";
         String password = "Password123";
-        homePage.clickOnSignInBtn();
-        LogInPage logInPage = new LogInPage();
-        logInPage.typeIntoEmailTf(email);
-        logInPage.typeIntoPasswordTf(password);
+        homePage.clickOnSignInBtn()
+                .typeIntoEmailTf(email)
+                .typeIntoPasswordTf(password)
 
-        //when
-        logInPage.clickOnSignInBtn();
+                //when
+                .clickOnSignInBtn();
+        LogInPage logInPage = new LogInPage();
 
         //then
         assertEquals(true, logInPage.isErrorTextDisplayed());

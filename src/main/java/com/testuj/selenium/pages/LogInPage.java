@@ -23,16 +23,20 @@ public class LogInPage {
         PageFactory.initElements(Driver.getInstance(), this);
     }
 
-    public void typeIntoEmailTf(String email) {
+    public LogInPage typeIntoEmailTf(String email) {
         tfEmail.sendKeys(email);
+        return this;
     }
 
-    public void typeIntoPasswordTf(String password) {
+    public LogInPage typeIntoPasswordTf(String password) {
         tfPassword.sendKeys(password);
+        return this;
     }
 
-    public void clickOnSignInBtn() {
+    //Return shall initialize new page always
+    public HomePage clickOnSignInBtn() {
         btnSignIn.click();
+        return new HomePage();
     }
 
     public boolean isErrorTextDisplayed() {
