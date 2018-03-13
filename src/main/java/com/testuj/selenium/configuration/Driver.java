@@ -15,9 +15,9 @@ public class Driver {
     private static WebDriver driver;
     public static String NODE = "http://192.168.0.15:4444/wd/hub";
 
-    public static WebDriver getInstance() {
+    public static WebDriver getInstance(String... urlToNavigate) {
         if(driver == null) {
-            driver = setUpDriver();
+            driver = urlToNavigate == null ? setUpDriver() : setUpDriver(urlToNavigate[0]);
         }
         return driver;
     }
@@ -29,7 +29,7 @@ public class Driver {
         driver = null;
     }
 
-    private static WebDriver setUpDriver() {
+    private static WebDriver setUpDriver(String... urlToNavigate) {
 //        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 
         ClassLoader classLoader = Driver.class.getClassLoader();
@@ -44,7 +44,8 @@ public class Driver {
         }*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.navigate().to("http://automationpractice.com");
+        String url = urlToNavigate == null ? "http://automationpractice.com" : urlToNavigate[0];
+        driver.navigate().to(url);
         return driver;
     }
 
