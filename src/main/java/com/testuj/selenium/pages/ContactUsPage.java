@@ -2,10 +2,13 @@ package com.testuj.selenium.pages;
 
 import com.testuj.selenium.configuration.Driver;
 import com.testuj.selenium.configuration.Waits;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.io.File;
 
 public class ContactUsPage {
 
@@ -26,6 +29,9 @@ public class ContactUsPage {
 
     @FindBy(css = ".alert.alert-success")
     private WebElement txtSuccess;
+
+    @FindBy(id = "fileUpload")
+    private WebElement tfAttachFile;
 
     public ContactUsPage() {
         Waits.implicitlyWait(2);
@@ -61,5 +67,14 @@ public class ContactUsPage {
     public String getSuccessAlertText() {
         Waits.waitForElementToBeVisible(txtSuccess);
         return txtSuccess.getText();
+    }
+
+    public ContactUsPage uploadImage() {
+        WebDriver instance = Driver.getInstance();
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        String resource = classLoader.getResource("image.jpg").getFile();
+        File file = new File(resource);
+        tfAttachFile.sendKeys(file.getAbsolutePath());
+        return this;
     }
 }

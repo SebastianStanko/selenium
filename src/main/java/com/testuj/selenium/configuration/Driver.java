@@ -30,17 +30,18 @@ public class Driver {
     }
 
     private static WebDriver setUpDriver() {
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 
-        /*ClassLoader classLoader = Driver.class.getClassLoader();
+        ClassLoader classLoader = Driver.class.getClassLoader();
         File driverPath = new File(classLoader.getResource("chromedriver.exe").getFile());
-        System.setProperty("webdriver.chrome.driver", String.valueOf(driverPath));*/
+        System.setProperty("webdriver.chrome.driver", String.valueOf(driverPath));
+        driver = new ChromeDriver();
 
-        try {
+        /*try {
             driver = new RemoteWebDriver(new URL(NODE), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
+        }*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.navigate().to("http://automationpractice.com");

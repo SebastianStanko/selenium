@@ -20,6 +20,7 @@ public class ContactUsPageTest extends BaseTest {
                 .typeIntoEmailTf("test@email.com")
                 .typeIntoOrderRefTf("Order reference")
                 .typeIntoMessageTf("Message")
+                .uploadImage()
 
                 //when
                 .clickOnSendBtn();
