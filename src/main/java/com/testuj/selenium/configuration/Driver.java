@@ -17,7 +17,7 @@ public class Driver {
 
     public static WebDriver getInstance(String... urlToNavigate) {
         if(driver == null) {
-            driver = urlToNavigate == null ? setUpDriver() : setUpDriver(urlToNavigate[0]);
+            driver = urlToNavigate.length == 0 ? setUpDriver() : setUpDriver(urlToNavigate[0]);
         }
         return driver;
     }
@@ -44,7 +44,7 @@ public class Driver {
         }*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        String url = urlToNavigate == null ? "http://automationpractice.com" : urlToNavigate[0];
+        String url = urlToNavigate.length == 0 ? "http://automationpractice.com" : urlToNavigate[0];
         driver.navigate().to(url);
         return driver;
     }
