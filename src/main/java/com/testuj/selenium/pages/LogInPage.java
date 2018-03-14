@@ -41,7 +41,7 @@ public class LogInPage {
     }
 
     public boolean isErrorTextDisplayed() {
-        Waits.fluentWaitForVisiblityOfElement(txtError);
+        Waits.awaitilityWaitForVisiblityOfElement(txtError);
         return txtError.isDisplayed();
     }
 }
