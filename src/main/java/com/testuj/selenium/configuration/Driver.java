@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Driver {
 
     private static WebDriver driver;
-    public static String NODE = "http://192.168.0.15:4444/wd/hub";
+    public static String NODE = "http://192.168.4.126:4444/wd/hub";
 
     public static WebDriver getInstance(String... urlToNavigate) {
         if(driver == null) {

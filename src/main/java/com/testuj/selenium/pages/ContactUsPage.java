@@ -40,7 +40,7 @@ public class ContactUsPage {
 
     public ContactUsPage selectSubjectElementByIndex(int index) {
         Select selectSubject = new Select(ddSubject);
-        selectSubject.selectByIndex(1);
+        selectSubject.selectByIndex(index);
         return this;
     }
 
